@@ -7,7 +7,7 @@ pipeline {
     stage("Clone code from GitHub") {
             steps {
                 script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/devopshint/Deploy-NodeApp-to-AWS-EKS-using-Jenkins-Pipeline']])
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/raushan8586/Deploy-NodeApp-to-AWS-EKS-using-Jenkins-Pipeline']])
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
      stage('Build Node JS Docker Image') {
             steps {
                 script {
-                  sh 'docker build -t devopshint/node-app-1.0 .'
+                  sh 'docker build -t raushan8586/node-app-1.0 .'
                 }
             }
         }
@@ -30,10 +30,10 @@ pipeline {
         stage('Deploy Docker Image to DockerHub') {
             steps {
                 script {
-                 withCredentials([string(credentialsId: 'devopshintdocker', variable: 'devopshintdocker')]) {
-                    sh 'docker login -u devopshint -p ${devopshintdocker}'
+                 withCredentials([string(credentialsId: 'devopsuserdocker', variable: 'devopsuserdocker')]) {
+                    sh 'docker login -u raushan8586 -p ${devopsuserdocker}'
             }
-            sh 'docker push devopshint/node-app-1.0'
+            sh 'docker push raushan8586/node-app-1.0'
         }
             }   
         }
@@ -41,7 +41,7 @@ pipeline {
      stage('Deploying Node App to Kubernetes') {
       steps {
         script {
-          sh ('aws eks update-kubeconfig --name sample --region ap-south-1')
+          sh ('aws eks update-kubeconfig --name eksdemo2 --region ap-south-1')
           sh "kubectl get ns"
           sh "kubectl apply -f nodejsapp.yaml"
         }
