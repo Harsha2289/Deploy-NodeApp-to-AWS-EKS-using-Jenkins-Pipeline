@@ -27,7 +27,7 @@ pipeline {
         }
 
 
-        stage('Deploy Docker Image to DockerHub') {
+        stage('Push Docker Image to DockerHub') {
             steps {
                 script {
                  withCredentials([string(credentialsId: 'devopsuserdocker', variable: 'devopsuserdocker')]) {
