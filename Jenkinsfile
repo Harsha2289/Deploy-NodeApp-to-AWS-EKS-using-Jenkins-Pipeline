@@ -7,7 +7,7 @@ pipeline {
     stage("Clone code from GitHub") {
             steps {
                 script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/raushan8586/Deploy-NodeApp-to-AWS-EKS-using-Jenkins-Pipeline']])
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/Harsha2289/Deploy-NodeApp-to-AWS-EKS-using-Jenkins-Pipeline']])
                 }
             }
         }
