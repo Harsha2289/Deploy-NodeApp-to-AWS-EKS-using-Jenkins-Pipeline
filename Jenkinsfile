@@ -21,7 +21,7 @@ pipeline {
      stage('Build Node JS Docker Image') {
             steps {
                 script {
-                  sh 'docker build -t Harsha2289/node-app-3.0 .'
+                  sh 'docker build -t harshapatil642/node-app-3.0 .'
                 }
             }
         }
@@ -31,9 +31,9 @@ pipeline {
             steps {
                 script {
                  withCredentials([string(credentialsId: 'devopsuserdocker', variable: 'devopsuserdocker')]) {
-                    sh 'docker login -u Harsha2289 -p ${devopsuserdocker}'
+                    sh 'docker login -u harshapatil642 -p ${devopsuserdocker}'
             }
-            sh 'docker push Harsha2289/node-app-3.0'
+            sh 'docker push harshapatil642/node-app-3.0'
         }
             }   
         }
